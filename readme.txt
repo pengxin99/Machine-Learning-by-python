@@ -19,4 +19,13 @@ No 2 LogisticRegression
 	Data
 		testSet.txt
 
+No 3 NavieBayes
+	Program
+		navie_bayes.py
+		navie_bayes1.py
+	Data
+		testdata.txt
+		testSet.txt
+    
+    
 it is a changed txt from branch devd!	
