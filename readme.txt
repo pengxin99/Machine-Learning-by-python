@@ -26,4 +26,6 @@ No 3 NavieBayes
 	Data
 		testdata.txt
 		testSet.txt
-
+    
+    
+it is a changed txt from branch devd!	
