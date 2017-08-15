@@ -18,4 +18,12 @@ No 2 LogisticRegression
 		logistic_reg.py
 	Data
 		testSet.txt
-	
+
+No 3 NavieBayes
+	Program
+		navie_bayes.py
+		navie_bayes1.py
+	Data
+		testdata.txt
+		testSet.txt
+
