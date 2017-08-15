@@ -18,4 +18,5 @@ No 2 LogisticRegression
 		logistic_reg.py
 	Data
 		testSet.txt
-	
+
+it is a changed txt from branch devd!	
