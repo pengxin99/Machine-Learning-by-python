@@ -6,14 +6,32 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 
-# 
+""" 产生高斯随机数据作为样本数据集
+    
+    Parameters
+    ----------
+    mean :  高斯均值
+    sigma :  高斯函数方差
+    count: 要产生的数据个数
+    ----------
+    return : 产生的数据列表
+"""
 def GaussNum(mean,sigma,count):
     res = [0] * count
     for i in range(count):
         res[i] = random.gauss(mean,sigma) 
     return res
 
-# 计算点与点的距离
+""" 计算点与点之间的距离，这里里二维数据为例
+    
+    Parameters
+    ----------
+    inX :  测试样本，数组
+    x :  x
+    y: y
+    ----------
+    return : 测试样本与（x，y）的距离
+"""
 def Distance_for_dot(inX,x,y):
     size = len(inX)
     sum = 0
@@ -21,11 +39,27 @@ def Distance_for_dot(inX,x,y):
         sum += ((inX[0] - x) ** 2 + (inX[1] - y) ** 2)
     return sum ** 0.5
 
+""" knn分类
+    
+    Parameters
+    ----------
+    inX :  测试样本，数组
+    x :  x
+    y: y
+    labels: 数据样本标签
+    k: knn中k值，为选取最近点的数量
+    ----------
+    return : inX被判定的划分类
+"""
 def knn_Classify(inX,x,y,labels,k):
+    # 计算样本数据的个数
     dataSetSize = len(x)
+    # 建立数组，用来存放测试数据与每个样本数据的距离
     distances_for_eachSample = [0] * dataSetSize
-    print(type(distances_for_eachSample))
+    # print(type(distances_for_eachSample))
+    # 数据与标签dict，key值为距离，value值为该样本数据的类别，这里假设所有距离都不相等
     data_and_label = {}
+    # 对于样本数据集，一次求距离，并且与自己的类别合并，存入data_and_label
     for i in range(dataSetSize):
         distances_for_eachSample[i] = Distance_for_dot(inX,x[i],y[i])
         data_and_label[distances_for_eachSample[i]] = labels[i]
@@ -33,7 +67,8 @@ def knn_Classify(inX,x,y,labels,k):
     # 这里排序完成后，data_and_labels变为list型
     # 按键值对（key）排序
     data_and_label = sorted(data_and_label.items(),key = lambda d:d[0])
-    print((data_and_label))
+    # print((data_and_label))
+    # res 保持最近K个样本数据，按照类别进行个数统计。key值为类别，value值为此类别个数统计
     res = {}
     for i in range(k):
         if (res.__contains__(data_and_label[i][1])):
@@ -42,15 +77,16 @@ def knn_Classify(inX,x,y,labels,k):
         else:
             res[data_and_label[i][1]] = 1
     
-    print(res)
+    # print(res)
+    # 对res 按照value值排序
     res = sorted(res.items(),key = lambda d:d[1],reverse = True)
-    print((res))
+    print(res)
     print("the result is : %s" %res[0][0])
 
 
 x1 = GaussNum(15,7,200)
 y1 = GaussNum(20,7,200)
-print(type(x1))
+
 x2 = GaussNum(30,7,200)
 y2 = GaussNum(50,8,200)
 
@@ -61,12 +97,14 @@ plt.scatter(x1,y1,c='b',marker='s',s=50,alpha=0.8)
 plt.scatter(x2,y2,c='r',marker='^',s=50,alpha=0.8)
 plt.scatter(x3,y3,c='g',marker='o',s=50,alpha=0.8)
 plt.show()
-print(type(x1 + x2 + x3))
+# 这里list可以直接用 + 合并
+# print(type(x1 + x2 + x3))
 x = x1 + x2 + x3
 y = y1 + y2 + y3
-labels = [1]*200+[2]*200+[3]*200
-print(type(labels))
-knn_Classify([20,40],x,y,labels,50)
+labels = ["blue"]*200+["red"]*200+["green"]*200
+# print(type(labels))
+
+knn_Classify([20,40],x,y,labels,20)
 
 
 
