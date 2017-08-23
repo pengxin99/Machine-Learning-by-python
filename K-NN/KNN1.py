@@ -52,6 +52,7 @@ def Distance_for_dot(inX,x,y):
     return : inX被判定的划分类
 """
 def knn_Classify(inX,x,y,labels,k):
+    
     # 计算样本数据的个数
     dataSetSize = len(x)
     # 建立数组，用来存放测试数据与每个样本数据的距离
@@ -81,30 +82,49 @@ def knn_Classify(inX,x,y,labels,k):
     # 对res 按照value值排序
     res = sorted(res.items(),key = lambda d:d[1],reverse = True)
     print(res)
+
+    draw_point(inX,res[0][0])
     print("the result is : %s" %res[0][0])
 
+def draw_point(inX,color):
+    plt.scatter(inX[0],inX[1],c=color,marker='*',s=400,alpha=0.8)
+    
 
-x1 = GaussNum(15,7,200)
-y1 = GaussNum(20,7,200)
+# 产生训练数据集，在数据集中自动分为三类，并且画出图
+def data_generate():
+    x1 = GaussNum(15,7,200)
+    y1 = GaussNum(20,7,200)
 
-x2 = GaussNum(30,7,200)
-y2 = GaussNum(50,8,200)
+    x2 = GaussNum(30,7,200)
+    y2 = GaussNum(50,8,200)
 
-x3 = GaussNum(5,7,200)
-y3 = GaussNum(40,7,200)
+    x3 = GaussNum(5,7,200)
+    y3 = GaussNum(40,7,200)
 
-plt.scatter(x1,y1,c='b',marker='s',s=50,alpha=0.8)
-plt.scatter(x2,y2,c='r',marker='^',s=50,alpha=0.8)
-plt.scatter(x3,y3,c='g',marker='o',s=50,alpha=0.8)
-plt.show()
-# 这里list可以直接用 + 合并
+    plt.scatter(x1,y1,c='b',marker='s',s=50,alpha=0.8)
+    plt.scatter(x2,y2,c='g',marker='^',s=50,alpha=0.8)
+    plt.scatter(x3,y3,c='r',marker='o',s=50,alpha=0.8)
+    # 这里list可以直接用 + 合并
+    x = x1 + x2 + x3
+    y = y1 + y2 + y3
+    labels = ["blue"]*200+["green"]*200+["red"]*200
+
+    return x,y,labels
+
+
+
+
+
+
+
 # print(type(x1 + x2 + x3))
-x = x1 + x2 + x3
-y = y1 + y2 + y3
-labels = ["blue"]*200+["red"]*200+["green"]*200
+
 # print(type(labels))
-
-knn_Classify([20,40],x,y,labels,20)
-
+if __name__ == '__main__':
+    x,y,labels = data_generate()
+    for i in range(3):
+        knn_Classify([20 - (i-1) * 10,40 - (i-1) * 10 ],x,y,labels,20)
+    
+    plt.show()
 
 
