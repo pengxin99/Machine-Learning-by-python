@@ -56,36 +56,28 @@ def knn_Classify(inX,x,y,labels,k):
     # 计算样本数据的个数
     dataSetSize = len(x)
     # 建立数组，用来存放测试数据与每个样本数据的距离
-    distances_for_eachSample = [0] * dataSetSize
+    distances_for_eachSample = np.tile([0],dataSetSize) 
     # print(type(distances_for_eachSample))
     # 数据与标签dict，key值为距离，value值为该样本数据的类别，这里假设所有距离都不相等
     data_and_label = {}
     # 对于样本数据集，一次求距离，并且与自己的类别合并，存入data_and_label
     for i in range(dataSetSize):
         distances_for_eachSample[i] = Distance_for_dot(inX,x[i],y[i])
-        data_and_label[distances_for_eachSample[i]] = labels[i]
-    
-    # 这里排序完成后，data_and_labels变为list型
-    # 按键值对（key）排序
-    data_and_label = sorted(data_and_label.items(),key = lambda d:d[0])
-    # print((data_and_label))
-    # res 保持最近K个样本数据，按照类别进行个数统计。key值为类别，value值为此类别个数统计
-    res = {}
+    # 此处，排序得到的是索引index，按照此index可以将array进行排序
+    sort_Index = distances_for_eachSample.argsort()
+
+    vote = {}
     for i in range(k):
-        if (res.__contains__(data_and_label[i][1])):
-            # print(data_and_label[i][1])
-            res[data_and_label[i][1]] += 1
-        else:
-            res[data_and_label[i][1]] = 1
+        ith_label = labels[sort_Index[i]]
+        #get(ith_label,0) : if dictionary 'vote' exist key 'ith_label', return vote[ith_label]; else return 0  
+        vote[ith_label] = vote.get(ith_label,0)+1 
+    sortedvote = sorted(vote.items(),key = lambda x:x[1], reverse = True)  
     
-    # print(res)
-    # 对res 按照value值排序
-    res = sorted(res.items(),key = lambda d:d[1],reverse = True)
-    print(res)
+    print(sortedvote)
+    draw_point(inX,sortedvote[0][0])
+    print("the result is : %s" %sortedvote[0][0])
 
-    draw_point(inX,res[0][0])
-    print("the result is : %s" %res[0][0])
-
+# 画单点
 def draw_point(inX,color):
     plt.scatter(inX[0],inX[1],c=color,marker='*',s=400,alpha=0.8)
     
@@ -102,24 +94,16 @@ def data_generate():
     y3 = GaussNum(40,7,200)
 
     plt.scatter(x1,y1,c='b',marker='s',s=50,alpha=0.8)
-    plt.scatter(x2,y2,c='g',marker='^',s=50,alpha=0.8)
+    plt.scatter(x2,y2,c='k',marker='^',s=50,alpha=0.8)
     plt.scatter(x3,y3,c='r',marker='o',s=50,alpha=0.8)
     # 这里list可以直接用 + 合并
     x = x1 + x2 + x3
     y = y1 + y2 + y3
-    labels = ["blue"]*200+["green"]*200+["red"]*200
+    labels = ["blue"]*200+["black"]*200+["red"]*200
 
     return x,y,labels
 
 
-
-
-
-
-
-# print(type(x1 + x2 + x3))
-
-# print(type(labels))
 if __name__ == '__main__':
     x,y,labels = data_generate()
     for i in range(3):
