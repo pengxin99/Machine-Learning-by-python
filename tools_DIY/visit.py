@@ -37,8 +37,8 @@ def find_paper_links(url):
 def visit_url():
 	# 总的访问量
     count = 0
-
-    url = 'http://blog.csdn.net/sinat_34022298?viewmode=contents'
+    url = input('Please input the url:')
+    # url = 'http://blog.csdn.net/sinat_34022298?viewmode=contents'
     links = find_paper_links(url)
     for i in range(len(links)):
         page_url = 'http://blog.csdn.net/sinat_' + links[i]
