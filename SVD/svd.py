@@ -29,23 +29,21 @@ def MatrixToImage(data):
 
 
 # SVD 分解函数
-def ImageSVD_bylib(imageData,r = 100):
 
+def ImageSVD_bylib(imageData,r = 100):
+	## imageDate 输入数据
+	## r 该SVD的sigma矩阵取前r个特征值
+	## return SVD后的矩阵
 	m,n = imageData.shape
 	print(m,n)
 	min_shape = min(m,n)
 	U,sigma,VT=la.svd(imageData)
-	# print(U)
-	# print(sigma)
-	# print(VT)
+	
 
 	U_r = U[:,0:r]
 	VT_r = VT[0:r,:]
 	sigma = sigma[0:r]
-	# print("*****************")
-	# print(U_r)
-	# print(sigma)
-	# print(VT_r)
+	
 	S = np.zeros((r, r), dtype=complex)
 	S[:r, :r] = np.diag(sigma)
 	print(S)
@@ -130,8 +128,8 @@ if __name__ == "__main__":
 	new_im = MatrixToImage(new_svd_data)
 
 	# 显示变换后的图片并保存
-	# new_im.show()
-	# new_im.save('cat_1.jpg')
-	plt.figure("dog")
-	plt.imshow(new_im)
-	plt.show()
+	new_im.show()
+	new_im.save('cat_1.jpg')
+	# plt.figure("dog")
+	# plt.imshow(new_im)
+	# plt.show()
