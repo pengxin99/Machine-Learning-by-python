@@ -48,14 +48,14 @@ def gardDescent(dataMatIn,classLabels):
 # 随机梯度上升算法
 # 每次对参数的更新都只用一个样本值，属于在线算法
 def stocGradAscent0(dataMatrix,classLabels):
-	dataMatrix = array(dataMatrix)
-	m,n = shape(dataMatrix)
-	alpha = 0.01
-	weights = ones(n)
-	for j in range(500):
-		for i in range(m):
-			h = sigmoid(sum(dataMatrix[i] * weights))
-			E = classLabels[i] - h
+    dataMatrix = array(dataMatrix)
+    m,n = shape(dataMatrix)
+    alpha = 0.01
+    weights = ones(n)
+    for j in range(500):
+        for i in range(m):
+            h = sigmoid(sum(dataMatrix[i] * weights))
+            E = classLabels[i] - h
 			weights = weights + alpha * E * dataMatrix[i]
 
 	return weights
@@ -81,12 +81,8 @@ def plotBestFit(weights_1,weights_2):
 		else:
 			xcord2.append(dataArr[i,1])
 			ycord2.append(dataArr[i,2])
-	
-	
-
 
 	fig = plt.figure(figsize=(14,6))
-	
 
 	# 图1
 	ax = fig.add_subplot(121)
@@ -115,7 +111,6 @@ def plotBestFit(weights_1,weights_2):
 	
 
 	plt.show()
-
 
 
 # 准确度计算
