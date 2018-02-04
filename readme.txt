@@ -26,6 +26,24 @@ No 3 NavieBayes
 	Data
 		testdata.txt
 		testSet.txt
-    
-    
-it is a changed txt from branch devd!	
+
+No 4 KNN
+	Program
+		KNN1.py
+		KNN2.py
+	Data
+		create in each program
+
+No 5 SVD
+	Program
+		svd.py -- by myself
+		svd_example.py -- svd form lib
+	Data
+
+No 6 SVM
+	Program
+		SVM.py
+		svmMLiA.py
+	Data		
+        testSet.txt
+       
