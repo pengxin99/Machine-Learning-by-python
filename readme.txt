@@ -1,11 +1,7 @@
-it is a learning practice in github
-and this repository is about ML learning by python.
-wrote at 16:21 2017/08/12
 
+# The content
 
-############### The content ######################
-
-NO 1 LineRegression
+## NO 1 LineRegression
 	Program
 		Numpy_practice.py
 		line_regression.py
@@ -13,13 +9,13 @@ NO 1 LineRegression
 	Data
 		ex1.txt
 
-No 2 LogisticRegression
+## No 2 LogisticRegression
 	Program
 		logistic_reg.py
 	Data
 		testSet.txt
 
-No 3 NavieBayes
+## No 3 NavieBayes
 	Program
 		navie_bayes.py
 		navie_bayes1.py
@@ -27,20 +23,20 @@ No 3 NavieBayes
 		testdata.txt
 		testSet.txt
 
-No 4 KNN
+## No 4 KNN
 	Program
 		KNN1.py
 		KNN2.py
 	Data
 		create in each program
 
-No 5 SVD
+## No 5 SVD
 	Program
 		svd.py -- by myself
 		svd_example.py -- svd form lib
 	Data
 
-No 6 SVM
+## No 6 SVM
 	Program
 		SVM.py
 		svmMLiA.py
